@@ -95,6 +95,7 @@ pnpm-debug.log*
 *.pfx
 !/config.example.json
 !/config.example.json.bak
+Live2D/live2d-model/-/
 
 # Editor and operating-system state
 /.idea/
