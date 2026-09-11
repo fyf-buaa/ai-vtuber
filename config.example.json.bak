@@ -1,0 +1,564 @@
+{
+  "login": {
+    "enable": false,
+    "username": "",
+    "password": "",
+    "ums_api": "http://127.0.0.1:1119"
+  },
+  "api_ip": "127.0.0.1",
+  "api_port": 8082,
+  "platform": "talk",
+  "room_display_id": "",
+  "before_prompt": "请简要回复:",
+  "after_prompt": "",
+  "comment_template": {
+    "enable": false,
+    "copywriting": "{username}说：{comment}"
+  },
+  "reply_template": {
+    "enable": false,
+    "username_max_len": 10,
+    "copywriting": [
+      "回复{username}{data}",
+      "{username}{data}"
+    ]
+  },
+  "comment_log_type": "回答",
+  "visual_body": "其他",
+  "EasyAIVtuber": {
+    "api_ip_port": "http://127.0.0.1:7888"
+  },
+  "play_audio": {
+    "enable": false,
+    "text_split_enable": true,
+    "interval_num_min": 1,
+    "interval_num_max": 2,
+    "normal_interval_min": 0.3,
+    "normal_interval_max": 0.5,
+    "out_path": "out",
+    "player": "pygame",
+    "info_to_callback": true
+  },
+  "virtual_microphone": {
+    "enable": false,
+    "device": "",
+    "executable": "mpv",
+    "args": [
+      "--no-config",
+      "--no-video",
+      "--really-quiet",
+      "--audio-device={device}",
+      "--",
+      "{audio}"
+    ]
+  },
+  "bilibili-web": {
+    "room_id": 0,
+    "sessdata": "",
+    "cookie": ""
+  },
+  "bilibili-platform": {
+    "ACCESS_KEY_ID": "",
+    "ACCESS_KEY_SECRET": "",
+    "APP_ID": 0,
+    "ROOM_OWNER_AUTH_CODE": ""
+  },
+  "ordinaryroad_barrage_fly": {
+    "ws_ip_port": "ws://127.0.0.1:9898",
+    "taskIds": []
+  },
+  "twitch": {
+    "token": "",
+    "user": "",
+    "proxy_server": "127.0.0.1",
+    "proxy_port": "10809"
+  },
+  "filter": {
+    "badwords": {
+      "enable": true,
+      "discard": false,
+      "path": "data/badwords.txt",
+      "replace": "*"
+    }
+  },
+  "speech": {
+    "queue_capacity": 50,
+    "queue_start_threshold": 0,
+    "priority_mapping": {
+      "schedule": 10,
+      "idle_time_task": 10,
+      "image_recognition_schedule": 10,
+      "entrance": 20,
+      "comment": 20,
+      "gift": 20,
+      "follow": 20,
+      "integral": 20,
+      "talk": 30,
+      "reread": 30,
+      "reread_top_priority": 999
+    }
+  },
+  "thanks": {
+    "entrance_enable": true,
+    "gift_enable": true,
+    "follow_enable": true
+  },
+  "search_online": {
+    "enable": false,
+    "provider": "tavily",
+    "api_key": "",
+    "endpoint": "",
+    "model": "",
+    "count": 10,
+    "http_proxy": "",
+    "https_proxy": ""
+  },
+  "live2d": {
+    "enable": false,
+    "port": 12345,
+    "name": "Hiyori",
+    "camera": {
+      "obs_websocket_url": "ws://127.0.0.1:4455",
+      "password": "",
+      "width": 1280,
+      "height": 720,
+      "fps": 30,
+      "auto_start": false
+    }
+  },
+  "audio_synthesis_type": "none",
+  "vits": {
+    "type": "vits",
+    "config_path": "models/config.json",
+    "api_ip_port": "http://127.0.0.1:23456",
+    "id": "0",
+    "lang": "自动",
+    "length": "1",
+    "noise": "0.33",
+    "noisew": "0.4",
+    "max": "50",
+    "format": "wav",
+    "sdp_radio": "0.2"
+  },
+  "bert_vits2": {
+    "type": "hiyori",
+    "api_ip_port": "http://127.0.0.1:5000",
+    "model_id": 0,
+    "speaker_name": "ikaros",
+    "speaker_id": 0,
+    "language": "auto",
+    "length": 1,
+    "noise": 0.2,
+    "noisew": 0.9,
+    "sdp_radio": 0.2,
+    "auto_translate": false,
+    "auto_split": false,
+    "emotion": "",
+    "style_text": "",
+    "style_weight": 0.7
+  },
+  "ddsp_svc": {
+    "enable": false,
+    "config_path": "models/config.yaml",
+    "api_ip_port": "http://127.0.0.1:6844",
+    "fSafePrefixPadLength": 0,
+    "fPitchChange": 0,
+    "sSpeakId": 0,
+    "sampleRate": 44100
+  },
+  "so_vits_svc": {
+    "enable": false,
+    "config_path": "models/config.json",
+    "api_ip_port": "http://127.0.0.1:1145",
+    "spk": "ikaros",
+    "tran": 1,
+    "wav_format": "wav"
+  },
+  "edge-tts": {
+    "voice": "zh-CN-XiaoyiNeural",
+    "rate": "+0%",
+    "volume": "+0%",
+    "proxy": ""
+  },
+  "openai_tts": {
+    "type": "api",
+    "api_ip_port": "https://api.openai.com/v1",
+    "model": "tts-1",
+    "voice": "nova",
+    "api_key": ""
+  },
+  "gpt_sovits": {
+    "type": "api",
+    "gradio_ip_port": "http://127.0.0.1:7860",
+    "api_ip_port": "http://127.0.0.1:9880",
+    "ref_audio_path": "data/reference.wav",
+    "prompt_text": "マスター、どうりょくろか、いいえ、なんでもありません",
+    "prompt_language": "日文",
+    "language": "自动识别",
+    "cut": "凑四句一切",
+    "api_0322": {
+      "text_lang": "中英混合",
+      "ref_audio_path": "data/reference.wav",
+      "prompt_text": "マスター、どうりょくろか、いいえ、なんでもありません",
+      "prompt_lang": "日文",
+      "top_k": 1,
+      "top_p": 0.8,
+      "temperature": 0.8,
+      "text_split_method": "按标点符号切",
+      "batch_size": 20,
+      "speed_factor": 1,
+      "split_bucket": false,
+      "return_fragment": false,
+      "fragment_interval": "0.3"
+    },
+    "api_0706": {
+      "refer_wav_path": "data/reference.wav",
+      "text_language": "中文",
+      "prompt_text": "整整策划了半年了，终于现在有结果了",
+      "prompt_language": "中文",
+      "cut_punc": "，。"
+    },
+    "v2_api_0821": {
+      "text_lang": "zh",
+      "ref_audio_path": "data/reference.wav",
+      "aux_ref_audio_paths": [],
+      "prompt_lang": "zh",
+      "prompt_text": "整整策划了半年了，终于现在有结果了",
+      "top_k": 5,
+      "top_p": 1,
+      "temperature": 1,
+      "text_split_method": "cut0",
+      "batch_size": 1,
+      "batch_threshold": 0.75,
+      "split_bucket": true,
+      "speed_factor": 1,
+      "fragment_interval": 0.3,
+      "seed": -1,
+      "media_type": "wav",
+      "streaming_mode": false,
+      "parallel_infer": true,
+      "repetition_penalty": 1.35
+    },
+    "webtts": {
+      "version": "1",
+      "api_ip_port": "http://127.0.0.1:8080",
+      "spk": "sanyueqi",
+      "lang": "zh",
+      "speed": "1.0",
+      "emotion": "正常"
+    }
+  },
+  "azure_tts": {
+    "subscription_key": "",
+    "region": "japanwest",
+    "voice_name": "zh-CN-XiaoyanNeural"
+  },
+  "header": {
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36 Edg/113.0.1774.42"
+  },
+  "image_recognition": {
+    "enable": false,
+    "provider": "google",
+    "model": "gemini-2.5-flash",
+    "apiKey": "",
+    "baseUrl": "",
+    "systemPrompt": "你是专用视觉转述模型。请仅根据输入图片，客观、准确、简洁地转述可见内容，不要臆测图片之外的信息。",
+    "prompt": "请转述这张图片中的可见内容。",
+    "maxTokens": 8192,
+    "contextWindow": 1048576,
+    "maxSessions": 8,
+    "thinkingLevel": "off",
+    "reasoning": false,
+    "headers": {},
+    "samplingParams": {}
+  },
+  "captions": {
+    "enable": false,
+    "file_path": "log/字幕.txt",
+    "raw_file_path": "log/原文字幕.txt"
+  },
+  "schedule": [],
+  "idle_time_task": {
+    "enable": false,
+    "type": "直播间无消息更新闲时",
+    "idle_time_min": 30,
+    "idle_time_max": 60,
+    "wait_play_audio_num_threshold": 10,
+    "idle_time_reduce_to": 0,
+    "min_msg_queue_len_to_trigger": 1,
+    "min_audio_queue_len_to_trigger": 1,
+    "trigger_type": [
+      "comment"
+    ],
+    "copywriting": {
+      "enable": false,
+      "random": true,
+      "copy": [
+        "当前时间是{time}，这里是新的语句[1|2|3]，可以在括号内随机一个数据[4|5|6]",
+        "闲时任务文案模式，第2句",
+        "闲时任务文案模式，第3句",
+        "闲时任务文案模式，第4句",
+        "闲时任务文案模式，第5句"
+      ]
+    },
+    "comment": {
+      "enable": false,
+      "random": true,
+      "copy": [
+        "请给我简单地介绍一项最新的未来科技，它的原理、应用场景以及对我们生活的影响。控制在100字以内",
+        "请给我简单地推荐一首流行歌曲，并分享一下它的创作背景、歌词寓意以及为什么你喜欢这首歌。控制在100字以内",
+        "请给我简单地介绍一种流行的美妆技巧，包括步骤、适用场合以及如何根据自己的特点进行个性化调整。控制在100字以内",
+        "请给我简单地分享一个健康的食谱，包括食材搭配、烹饪方法以及为什么这个食谱对身体健康有益。控制在100字以内",
+        "请给我简单地分享一个值得让人思考的故事.控制在100字以内",
+        "请给我简单地讲一个笑话，让我在忙碌的生活中找到轻松和快乐。控制在100字以内"
+      ]
+    }
+  },
+  "database": {
+    "path": "data/data.db",
+    "comment_enable": false,
+    "entrance_enable": false,
+    "gift_enable": false
+  },
+  "integral": {
+    "enable": false,
+    "entrance": {
+      "enable": true,
+      "get_integral": 1,
+      "copywriting": [
+        {
+          "entrance_num_interval": "0-3",
+          "copywriting": [
+            "{username}，感谢您的观看，获得{get_integral}点积分",
+            "欢迎{username}，获得{get_integral}点积分"
+          ]
+        },
+        {
+          "entrance_num_interval": "4-29",
+          "copywriting": [
+            "{username}，感谢您的观看，获得{get_integral}点积分",
+            "欢迎{username}，今天是您看我的{entrance_num}天，我很开心"
+          ]
+        },
+        {
+          "entrance_num_interval": "30-666666",
+          "copywriting": [
+            "{username}，今天是您看我的{entrance_num}天，获得{get_integral}点积分",
+            "非常感谢{username}的陪伴，有您这样的粉丝，主播生涯也是没有遗憾了"
+          ]
+        }
+      ]
+    },
+    "gift": {
+      "enable": true,
+      "get_integral_proportion": 10,
+      "copywriting": [
+        {
+          "gift_price_interval": "0-1",
+          "copywriting": [
+            "感谢{username}的{gift_name}，获得{get_integral}点积分",
+            "感谢{username}的{gift_name}",
+            "感谢{username}送的{gift_num}个单价{unit_price}元，总价{total_price}元的{gift_name}喵"
+          ]
+        },
+        {
+          "gift_price_interval": "1.01-10",
+          "copywriting": [
+            "感谢{username}的{gift_name}，老板大气，获得{get_integral}点积分",
+            "感谢{username}的{gift_name}，获得{get_integral}点积分"
+          ]
+        },
+        {
+          "gift_price_interval": "10.01-88888888",
+          "copywriting": [
+            "感谢{username}的{gift_name}，获得{get_integral}点积分",
+            "感谢{username}的{gift_name}，您真是在下的衣食父母啊"
+          ]
+        }
+      ]
+    },
+    "sign": {
+      "enable": true,
+      "cmd": [
+        "签到",
+        "打卡",
+        "打卡喵"
+      ],
+      "get_integral": 1,
+      "copywriting": [
+        {
+          "sign_num_interval": "0-3",
+          "copywriting": [
+            "{username}打卡成功，获得{get_integral}点积分，您已打卡{sign_num}天",
+            "{username}打卡成功喵，获得{get_integral}点积分"
+          ]
+        },
+        {
+          "sign_num_interval": "4-30",
+          "copywriting": [
+            "{username}打卡成功，获得{get_integral}点积分，您已打卡{sign_num}天",
+            "{username}打卡成功喵，获得{get_integral}点积分，感谢您{sign_num}天的陪伴"
+          ]
+        },
+        {
+          "sign_num_interval": "31-666666",
+          "copywriting": [
+            "非常感谢{username}的陪伴，有您这样的粉丝，主播生涯也是没有遗憾了",
+            "{username}打卡成功喵，获得{get_integral}点积分，感谢您{sign_num}天的陪伴"
+          ]
+        }
+      ]
+    },
+    "crud": {
+      "query": {
+        "enable": true,
+        "cmd": [
+          "我的积分",
+          "查询积分"
+        ],
+        "copywriting": [
+          "{username}查询成功，您当前的积分是{integral}",
+          "{username}，您当前的积分是{integral}"
+        ]
+      }
+    }
+  },
+  "data_analysis": {
+    "comment_word_cloud": {
+      "top_num": 10
+    },
+    "integral": {
+      "top_num": 10
+    },
+    "gift": {
+      "top_num": 10
+    }
+  },
+  "webui": {
+    "ip": "127.0.0.1",
+    "port": 8081,
+    "title": "AI Vtuber",
+    "auto_run": false,
+    "local_dir_to_endpoint": {
+      "enable": false,
+      "config": [
+        {
+          "url_path": "/out",
+          "local_dir": "out"
+        }
+      ]
+    },
+    "log": {
+      "log_level": "INFO",
+      "max_file_size": "100 MB"
+    },
+    "theme": {
+      "choose": "蓝天白云",
+      "list": {
+        "蓝粉渐变": {
+          "login_card": "width: 100%;height: 100%;display: flex;justify-content: center;align-items: center;position: fixed;left: 0;top: 0;background: linear-gradient(45deg, #3494E6, #EC6EAD);",
+          "tab_panel": "background: linear-gradient(45deg, #3494E6, #EC6EAD);",
+          "card": "margin:10px 0px;background: linear-gradient(45deg, #3494E6, #EC6EAD);",
+          "button_bottom": "margin:5px",
+          "button_bottom_color": "#EC6EAD",
+          "button_internal": "margin:5px",
+          "button_internal_color": "",
+          "switch_internal": "",
+          "echart": "width:100%; height:600px;"
+        },
+        "默认黑白": {
+          "login_card": "width: 100%;height: 100%;display: flex;justify-content: center;align-items: center;position: fixed;left: 0;top: 0;",
+          "tab_panel": "",
+          "card": "margin:10px 0px;",
+          "button_bottom": "margin:5px",
+          "button_bottom_color": "primary",
+          "button_internal": "margin:5px",
+          "button_internal_color": "",
+          "switch_internal": "",
+          "echart": "width:100%; height:600px;"
+        },
+        "蓝天白云": {
+          "login_card": "background:linear-gradient(45deg, #6eb9f2, #8dceff);width: 100%;height: 100%;display: flex;justify-content: center;align-items: center;position: fixed;left: 0;top: 0;",
+          "tab_panel": "background: linear-gradient(45deg, #6eb9f2, #8dceff);",
+          "card": "margin:10px 0px;background: linear-gradient(45deg, #e3e8ef, #ffffff);",
+          "button_bottom": "margin:5px",
+          "button_bottom_color": "#3e78bd;",
+          "button_internal": "margin:5px",
+          "button_internal_color": "",
+          "switch_internal": "",
+          "echart": "width:100%; height:600px;"
+        },
+        "极地极光": {
+          "login_card": "background:linear-gradient(45deg, #027333, #025959);width: 100%;height: 100%;display: flex;justify-content: center;align-items: center;position: fixed;left: 0;top: 0;",
+          "tab_panel": "background: linear-gradient(45deg, #027333, #025959);",
+          "card": "margin:10px 0px;background: linear-gradient(45deg, #027333, #04D939);",
+          "button_bottom": "margin:5px",
+          "button_bottom_color": "#04D939;",
+          "button_internal": "margin:5px",
+          "button_internal_color": "",
+          "switch_internal": "",
+          "echart": "width:100%; height:600px;"
+        },
+        "曲奇饼干": {
+          "login_card": "background:linear-gradient(45deg, #F2BC8D, #73341D);width: 100%;height: 100%;display: flex;justify-content: center;align-items: center;position: fixed;left: 0;top: 0;",
+          "tab_panel": "background: linear-gradient(45deg, #F2BC8D, #73341D);",
+          "card": "margin:10px 0px;background: linear-gradient(45deg, #F2BC8D, #73341D);",
+          "button_bottom": "margin:5px;",
+          "button_bottom_color": "#A65F37",
+          "button_internal": "margin:5px",
+          "button_internal_color": "",
+          "switch_internal": "",
+          "echart": "width:100%; height:600px;"
+        }
+      }
+    },
+    "show_card": {
+      "common_config": {
+        "filter": true,
+        "thanks": true,
+        "search_online": true,
+        "log": true,
+        "schedule": true,
+        "idle_time_task": true,
+        "database": true,
+        "play_audio": true,
+        "virtual_microphone": true
+      },
+      "tts": {
+        "edge-tts": true,
+        "vits": true,
+        "bert_vits2": true,
+        "openai_tts": true,
+        "gpt_sovits": true,
+        "azure_tts": true
+      },
+      "svc": {
+        "ddsp_svc": true,
+        "so_vits_svc": true
+      },
+      "visual_body": {
+        "live2d": true,
+        "EasyAIVtuber": true
+      }
+    }
+  },
+  "agent": {
+    "mode": "reread",
+    "provider": "openai",
+    "model": "gpt-4",
+    "apiKey": "",
+    "baseUrl": "",
+    "systemPrompt": "",
+    "maxTokens": 8192,
+    "contextWindow": 8192,
+    "maxSessions": 100,
+    "thinkingLevel": "off",
+    "reasoning": false,
+    "input": [
+      "text"
+    ],
+    "tools": true,
+    "headers": {},
+    "samplingParams": {}
+  }
+}

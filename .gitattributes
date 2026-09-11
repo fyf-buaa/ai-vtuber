@@ -1,0 +1,6 @@
+# Auto detect text files and perform LF normalization
+data/text2vec_models filter=lfs diff=lfs merge=lfs -text
+
+# Preserve the original licensed SDK bytes and recorded source hashes.
+Live2D/vendor/** -text
+Live2D/js/live2dcubismcore.js -text

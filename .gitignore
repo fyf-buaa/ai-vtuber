@@ -1,0 +1,115 @@
+# Node.js dependencies and build output
+/node_modules/
+/dist/
+/web/dist/
+/Live2D/js/bundle.js
+/coverage/
+/.nyc_output/
+*.tsbuildinfo
+/pi/**/node_modules/
+/pi/**/dist/
+/pi/.artifacts/
+
+# Tool caches and temporary files
+/.cache/
+/.eslintcache
+/.vite/
+/.vitest/
+/.turbo/
+/.tmp/
+/tmp/
+temp/
+*.tmp
+*.temp
+*.swp
+*~
+.DS_Store
+Thumbs.db
+
+# Package-manager diagnostics
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Runtime logs and generated media. Keep intentional placeholders/documentation.
+/log/**
+!/log/**/
+!/log/**/README.md
+!/log/**/.gitkeep
+/out/**
+!/out/**/
+!/out/**/README.md
+!/out/**/.gitkeep
+
+# Timestamped archives produced by `npm run backup`.
+/backup/[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]T[0-9][0-9]-[0-9][0-9]-[0-9][0-9]-[0-9][0-9][0-9]Z/
+# Backup payloads can contain user data and credentials. Keep only explicit docs/placeholders eligible.
+/backup/**
+!/backup/**/
+!/backup/**/README.md
+!/backup/**/.gitkeep
+
+
+# Local runtime databases and generated indexes; never ignore the data tree itself.
+/data/*.db
+/data/*.db-*
+/data/**/*.sqlite
+/data/**/*.sqlite3
+/data/vector_base/
+/data/text2vec_models/
+!/data/**/README.md
+!/data/**/.gitkeep
+
+# Locally downloaded model caches (bundled/intentional model assets remain trackable).
+/models/.locks/
+/models/hub/
+/models/faster-whisper-small/
+/models/iic/
+
+# Local model source pack; not part of the redistributable application.
+/Live2D/live2d-model/sizuku/
+/song/**
+!/song/**/
+!/song/**/README.md
+!/song/**/.gitkeep
+
+# Preserved local vendor/tool installations are not application source.
+/AI-Vtuber-other其他包-自行安装补充/
+/Miniconda3/
+
+
+# Runtime configuration and credentials stay local; only sanitized examples are published.
+/config.local.json*
+/config.json
+/config.json.bak
+.env
+.env.*
+!.env.example
+/cookie/*.json
+/credentials.json
+/credentials.local.json
+*.pem
+*.key
+*.p12
+*.pfx
+!/config.example.json
+!/config.example.json.bak
+
+# Editor and operating-system state
+/.idea/
+/.vscode/*.local.json
+
+# Leftover caches from the removed runtime; do not commit them.
+__pycache__/
+*.py[cod]
+
+# These are application sources, not generated directories.
+!/src/
+!/src/**/*.ts
+!/test/
+!/test/**/*.ts
+!/web/
+!/web/**/*.ts
+!/web/**/*.html
+!/web/**/*.css

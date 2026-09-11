@@ -1,0 +1,27 @@
+export {
+  OperatorServer,
+  createOperatorServer,
+  type EventSubmitter,
+  type LocalBearerAuthorization,
+  type OperatorAnalyticsService,
+  type OperatorAvatarService,
+  type OperatorAvatarStatus,
+  type OperatorEventBus,
+  type OperatorServerAddress,
+  type OperatorServerDependencies,
+  type OperatorServerOptions,
+  type OperatorRequestAuthorizer,
+  type OperatorServerStartOptions,
+  type OperatorSpeechService,
+  type PlaybackCallback,
+  type RuntimeControls,
+  type ServerLogger,
+} from "./http-server.js";
+export {
+  ConfigDocumentError,
+  REDACTED_VALUE,
+  isSecretKey,
+  redactSecrets,
+  restoreRedactedValues,
+  validateConfigDocument,
+} from "./config-redaction.js";

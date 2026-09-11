@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light">
+    <meta name="theme-color" content="#f3f0e8">
+    <title>配置中心 · AI Vtuber</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/settings.css">
+    <script type="module" src="/dist/settings.js"></script>
+  </head>
+  <body class="settings-page">
+    <a class="skip-link" href="#settings-main">跳到配置内容</a>
+
+    <header class="masthead settings-masthead">
+      <div class="brand-block">
+        <p class="eyebrow">SETTINGS / OPERATOR</p>
+        <h1>配置中心</h1>
+        <nav class="settings-backlinks" aria-label="页面导航">
+          <a class="button button-secondary button-link" href="/">返回值守台</a>
+          <a class="button button-quiet button-link" href="/#config-title">高级 JSON 编辑器</a>
+        </nav>
+      </div>
+
+      <form class="auth-strip settings-auth-strip" id="settings-auth-form" autocomplete="off">
+        <div class="auth-copy">
+          <span
+            class="connection-mark"
+            id="settings-connection-mark"
+            data-state="loading"
+            aria-hidden="true"
+          ></span>
+          <div>
+            <strong id="settings-connection-label">正在连接</strong>
+            <span id="settings-connection-detail">等待服务响应</span>
+          </div>
+        </div>
+        <label for="settings-token-input">访问令牌</label>
+        <input
+          id="settings-token-input"
+          name="token"
+          type="password"
+          inputmode="text"
+          placeholder="未启用认证时留空"
+          aria-describedby="settings-token-help"
+        >
+        <span class="field-help" id="settings-token-help">令牌仅保存在当前浏览器标签页，关闭标签页后即清除。</span>
+        <button class="button button-secondary" type="submit" id="settings-connect">连接</button>
+      </form>
+    </header>
+
+    <div
+      class="announcement"
+      id="settings-announcement"
+      role="status"
+      aria-live="polite"
+      hidden
+    ></div>
+
+    <main id="settings-main" class="page-shell settings-shell">
+      <div class="settings-layout">
+        <aside class="panel settings-directory" aria-labelledby="settings-directory-title">
+          <div class="settings-directory-heading">
+            <div>
+              <p class="eyebrow">SECTION INDEX</p>
+              <h2 id="settings-directory-title">配置目录</h2>
+            </div>
+          </div>
+
+
+          <nav
+            class="settings-section-nav"
+            id="settings-section-nav"
+            aria-label="原 WebUI 配置功能区"
+          ></nav>
+        </aside>
+
+        <section class="panel settings-workspace" aria-labelledby="settings-workspace-title">
+          <header class="settings-workspace-header">
+            <div>
+              <p class="eyebrow">STRUCTURED CONFIG</p>
+              <h2 id="settings-workspace-title">当前配置</h2>
+            </div>
+            <div class="settings-summary" aria-label="配置编辑摘要">
+              <span id="settings-revision">修订：尚未载入</span>
+              <span id="settings-dirty-count">0 项待保存</span>
+            </div>
+            <div class="settings-tree-controls" aria-label="配置分区展开控制">
+              <button class="button button-quiet" type="button" id="settings-expand-all">全部展开</button>
+              <button class="button button-quiet" type="button" id="settings-collapse-all">全部折叠</button>
+            </div>
+          </header>
+
+          <section
+            class="settings-agent-overview"
+            id="settings-agent-overview"
+            aria-labelledby="settings-agent-overview-title"
+            hidden
+          >
+            <header class="settings-agent-overview-header">
+              <div>
+                <p class="eyebrow">PI AGENT CONTRACT</p>
+                <h3 id="settings-agent-overview-title">模型运行状态</h3>
+              </div>
+              <span class="settings-agent-source" id="settings-agent-source">尚未载入</span>
+            </header>
+            <dl class="settings-agent-facts">
+              <div>
+                <dt>事件路由</dt>
+                <dd id="settings-agent-route">—</dd>
+              </div>
+              <div>
+                <dt>当前模型</dt>
+                <dd id="settings-agent-selection">—</dd>
+              </div>
+              <div>
+                <dt>模型能力</dt>
+                <dd id="settings-agent-capability">—</dd>
+              </div>
+              <div>
+                <dt>API 凭据</dt>
+                <dd id="settings-agent-credential">—</dd>
+              </div>
+            </dl>
+            <p
+              class="settings-agent-catalog-state"
+              id="settings-agent-catalog-state"
+              role="status"
+              aria-live="polite"
+              aria-atomic="true"
+            ></p>
+          </section>
+
+          <form id="settings-form" class="settings-form" autocomplete="off" novalidate>
+            <div id="settings-tree" class="settings-tree" aria-label="结构化配置字段"></div>
+
+            <div id="settings-empty" class="settings-empty" role="status">
+              <strong>连接后即可编辑</strong>
+              <span>输入访问令牌并连接；未启用认证时可直接连接。</span>
+            </div>
+
+            <footer class="settings-action-bar">
+              <div class="settings-secondary-actions">
+                <button class="button button-secondary" type="button" id="settings-reload">重新载入</button>
+                <button class="button button-secondary" type="button" id="settings-reset">撤销未保存更改</button>
+              </div>
+              <button class="button button-primary" type="submit" id="settings-save">保存全部更改</button>
+            </footer>
+          </form>
+        </section>
+      </div>
+    </main>
+
+    <footer class="page-footer settings-footer">
+      <span>AI Vtuber Configuration Center</span>
+      <span id="settings-footer-time">—</span>
+    </footer>
+  </body>
+</html>

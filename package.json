@@ -1,0 +1,41 @@
+{
+  "name": "ai-vtuber",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.19.0"
+  },
+  "scripts": {
+    "install:pi": "npm --prefix ./pi ci --ignore-scripts",
+    "check:pi": "node --input-type=module -e \"import { existsSync } from 'node:fs'; if (!existsSync('pi/node_modules')) { console.error('Missing pi/node_modules. Run npm run install:pi once.'); process.exit(1); }\"",
+    "build:pi": "npm run check:pi && npm --prefix ./pi run build --workspace=@earendil-works/pi-telemetry && npm --prefix ./pi run build:offline --workspace=@earendil-works/pi-ai && npm --prefix ./pi run build --workspace=@earendil-works/pi-agent-core",
+    "build:live2d": "esbuild Live2D/src/renderer.ts --bundle --format=iife --platform=browser --target=es2022 --outfile=Live2D/js/bundle.js",
+    "build:web": "esbuild web/client.ts web/settings.ts --bundle --format=esm --platform=browser --target=es2022 --outdir=web/dist --entry-names=[name] && npm run build:live2d",
+    "build": "npm run build:pi && tsc -p tsconfig.build.json && npm run build:web",
+    "typecheck": "npm run build:pi && tsc -p tsconfig.json && tsc -p Live2D/tsconfig.json",
+    "test": "npm run build:pi && vitest run",
+    "dev": "npm run build:pi && npm run build:web && tsx watch src/index.ts",
+    "prestart": "npm run build",
+    "start": "node --enable-source-maps dist/index.js",
+    "backup": "node ops/backup.ts",
+    "cleanup:demo": "node ops/cleanup-demo.ts",
+    "list:idle-audio": "node ops/list-idle-audio.ts"
+  },
+  "dependencies": {
+    "@earendil-works/pi-agent-core": "file:pi/packages/agent",
+    "@earendil-works/pi-ai": "file:pi/packages/ai",
+    "@earendil-works/pi-telemetry": "file:pi/packages/telemetry",
+    "https-proxy-agent": "7.0.6",
+    "typebox": "1.3.7",
+    "ws": "8.21.0"
+  },
+  "devDependencies": {
+    "@types/node": "22.19.19",
+    "@types/ws": "8.18.1",
+    "esbuild": "0.28.1",
+    "tsx": "4.22.1",
+    "typescript": "5.9.3",
+    "vitest": "4.1.9"
+  }
+}

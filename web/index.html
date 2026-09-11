@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light">
+    <meta name="theme-color" content="#f3f0e8">
+    <title>AI Vtuber 值守台</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script type="module" src="/dist/client.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">跳到主要内容</a>
+
+    <header class="masthead">
+      <div class="brand-block">
+        <p class="eyebrow">AI VTUBER / OPERATOR</p>
+        <h1>直播值守台</h1>
+        <p class="lede">在一个页面内检查链路、发送测试弹幕并安全维护运行配置。</p>
+        <nav class="masthead-nav" aria-label="主要导航">
+          <a class="button button-primary button-link" href="/settings">配置中心</a>
+        </nav>
+      </div>
+
+      <form class="auth-strip" id="auth-form" autocomplete="off">
+        <div class="auth-copy">
+          <span class="connection-mark" id="connection-mark" data-state="loading" aria-hidden="true"></span>
+          <div>
+            <strong id="connection-label">正在连接</strong>
+            <span id="connection-detail">等待服务响应</span>
+          </div>
+        </div>
+        <label for="token-input">访问令牌</label>
+        <input
+          id="token-input"
+          name="token"
+          type="password"
+          inputmode="text"
+          placeholder="未启用认证时留空"
+          aria-describedby="token-help"
+        >
+        <span class="field-help" id="token-help">只保存在当前浏览器标签页</span>
+        <button class="button button-secondary" type="submit" id="connect-button">连接</button>
+      </form>
+    </header>
+
+    <div class="announcement" id="announcement" role="status" aria-live="polite" hidden></div>
+
+    <main id="main-content" class="page-shell">
+      <section class="status-board" aria-labelledby="status-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">CONTROL ROOM</p>
+            <h2 id="status-title">运行态势</h2>
+          </div>
+          <button class="button button-quiet" type="button" id="refresh-status">刷新状态</button>
+        </div>
+
+        <div class="status-layout">
+          <dl class="status-list">
+            <div>
+              <dt>运行时</dt>
+              <dd><span class="state-dot" id="runtime-dot" data-state="loading"></span><span id="runtime-state">读取中</span></dd>
+            </div>
+            <div>
+              <dt>智能体</dt>
+              <dd><span class="state-dot" id="agent-dot" data-state="loading"></span><span id="agent-state">读取中</span></dd>
+            </div>
+            <div>
+              <dt>语音</dt>
+              <dd><span class="state-dot" id="speech-dot" data-state="loading"></span><span id="speech-state">读取中</span></dd>
+            </div>
+            <div>
+              <dt>事件流</dt>
+              <dd><span class="state-dot" id="stream-dot" data-state="loading"></span><span id="stream-state">连接中</span></dd>
+            </div>
+          </dl>
+
+          <div class="queue-readout" aria-label="队列状态">
+            <span>等待处理</span>
+            <strong id="event-queue">—</strong>
+            <span>语音排队</span>
+            <strong id="speech-queue">—</strong>
+            <span>等待播放</span>
+            <strong id="playback-queue">—</strong>
+          </div>
+
+          <div class="runtime-actions" aria-label="运行时操作">
+            <p>操作不会启动任意外部命令。停止需二次点击确认。</p>
+            <div>
+              <button class="button button-secondary" type="button" id="reload-runtime">重新载入</button>
+              <button class="button button-danger" type="button" id="stop-runtime">停止运行</button>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="panel avatar-panel" aria-labelledby="avatar-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">LIVE2D / OBS</p>
+            <h2 id="avatar-title">角色预览与对话</h2>
+          </div>
+          <span class="section-index" id="avatar-model-name">读取中</span>
+        </div>
+        <div class="avatar-layout">
+          <div class="avatar-stage" id="avatar-stage" data-state="loading">
+            <iframe
+              id="avatar-preview"
+              title="Live2D 角色预览"
+              hidden
+              allow="autoplay"
+              referrerpolicy="same-origin"
+            ></iframe>
+            <div class="avatar-placeholder" id="avatar-placeholder" role="status" aria-live="polite">
+              <strong id="avatar-preview-title">正在准备角色预览</strong>
+              <span id="avatar-preview-detail">完成授权后将加载 Live2D 渲染器。</span>
+            </div>
+          </div>
+          <div class="avatar-controls">
+            <div class="avatar-camera-status" id="avatar-camera-status" data-state="loading" role="status" aria-live="polite">
+              <strong id="avatar-camera-state">虚拟摄像头读取中</strong>
+              <span id="avatar-camera-detail">需要 OBS 28+，并在 OBS 中启用“虚拟摄像头”。</span>
+            </div>
+            <div class="avatar-camera-actions">
+              <button class="button button-primary" type="button" id="start-avatar-camera" disabled>启动虚拟摄像头</button>
+              <button class="button button-secondary" type="button" id="stop-avatar-camera" disabled>停止</button>
+            </div>
+            <p class="field-help">输出由后端控制；请先启动 OBS 并确认其“虚拟摄像头”设备可被会议软件选择。</p>
+            <form class="avatar-talk-form" id="avatar-talk-form">
+              <label for="avatar-talk-content">和角色说句话</label>
+              <textarea id="avatar-talk-content" rows="3" maxlength="20000" placeholder="输入后按 Enter 发送，Shift+Enter 换行" required></textarea>
+              <div class="form-footer">
+                <span id="avatar-talk-result" role="status" aria-live="polite">回复会显示在这里</span>
+                <button class="button button-primary" type="submit" id="send-avatar-talk">发送</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+
+      <div class="work-grid">
+        <section class="panel manual-panel" aria-labelledby="manual-title">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">SMOKE PATH</p>
+              <h2 id="manual-title">手动事件</h2>
+            </div>
+            <span class="section-index">01</span>
+          </div>
+          <p class="panel-intro">无需直播平台凭据，直接把一条事件送入同一处理链路。</p>
+
+          <form id="manual-form" class="form-stack">
+            <div class="field-row">
+              <div class="field-group">
+                <label for="event-type">事件类型</label>
+                <select id="event-type" name="type">
+                  <option value="comment">弹幕</option>
+                  <option value="talk">本地对话</option>
+                  <option value="gift">礼物</option>
+                  <option value="entrance">入场</option>
+                  <option value="follow">关注</option>
+                </select>
+              </div>
+              <div class="field-group field-grow">
+                <label for="event-username">用户名</label>
+                <input id="event-username" name="username" type="text" value="操作员" maxlength="256">
+              </div>
+            </div>
+            <div class="field-group">
+              <label for="event-content">内容</label>
+              <textarea
+                id="event-content"
+                name="content"
+                rows="6"
+                maxlength="20000"
+                placeholder="输入一条测试弹幕，例如：请介绍一下今天的直播内容"
+                required
+              ></textarea>
+              <span class="field-help" id="content-count">0 / 20000</span>
+            </div>
+            <div class="form-footer">
+              <span id="manual-result" role="status" aria-live="polite">等待输入</span>
+              <button class="button button-primary" type="submit" id="send-event">发送到处理链路</button>
+            </div>
+          </form>
+        </section>
+
+        <section class="panel log-panel" aria-labelledby="log-title">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">LIVE FEED</p>
+              <h2 id="log-title">实时事件</h2>
+            </div>
+            <span class="section-index">02</span>
+          </div>
+          <div class="log-toolbar">
+            <span id="log-count">0 / 200</span>
+            <div>
+              <button class="button button-quiet" type="button" id="pause-log">暂停</button>
+              <button class="button button-quiet" type="button" id="clear-log">清空</button>
+            </div>
+          </div>
+          <ol class="event-log" id="event-log" aria-live="polite" aria-relevant="additions">
+            <li class="empty-state" id="log-empty">
+              <strong>等待第一条事件</strong>
+              <span>可先发送一条手动弹幕，验证智能体与语音链路。</span>
+            </li>
+          </ol>
+        </section>
+      </div>
+
+      <section class="panel config-panel" aria-labelledby="config-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">SOURCE OF TRUTH</p>
+            <h2 id="config-title">运行配置</h2>
+          </div>
+          <span class="section-index">03</span>
+        </div>
+        <div class="config-guidance">
+          <p>密钥统一显示为 <code>[REDACTED]</code>。原样保存会保留真实值；输入空字符串可显式清除对应密钥。</p>
+          <p id="config-revision">尚未载入</p>
+        </div>
+        <label class="visually-hidden" for="config-editor">JSON 配置编辑器</label>
+        <textarea
+          id="config-editor"
+          class="code-editor"
+          rows="24"
+          spellcheck="false"
+          autocapitalize="off"
+          autocomplete="off"
+          aria-describedby="config-validation"
+          placeholder="连接后载入配置"
+        ></textarea>
+        <div class="config-footer">
+          <span id="config-validation" role="status" aria-live="polite">尚未检查</span>
+          <div>
+            <button class="button button-secondary" type="button" id="load-config">重新载入</button>
+            <button class="button button-primary" type="button" id="save-config">校验并保存</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="page-footer">
+      <span>AI Vtuber Operator</span>
+      <span id="footer-time">—</span>
+    </footer>
+  </body>
+</html>

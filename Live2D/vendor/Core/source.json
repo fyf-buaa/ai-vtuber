@@ -1,0 +1,19 @@
+{
+  "sdk": "Cubism SDK for Web R5",
+  "sdkVersion": "5-r.5",
+  "released": "2026-04-02",
+  "archiveUrl": "https://cubism.live2d.com/sdk-web/bin/CubismSdkForWeb-5-r.5.zip",
+  "archiveRoot": "CubismSdkForWeb-5-r.5",
+  "coreVersion": "06.00.0001",
+  "coreVersionSource": "Core/CHANGELOG.md, 2026-01-08: Upgrade Core version to 06.00.0001.",
+  "coreSha256": "8741f739779b5d5210872bd3d7d99f0f1e56e6c87409e7d26d6bb4b80aa1ef47",
+  "coreSourceFile": "Core/live2dcubismcore.min.js",
+  "coreSourceRevision": "d96fa37f45ab8448936200c16a090ca9c2dc2945",
+  "files": {
+    "browserCore": "../../js/live2dcubismcore.js",
+    "declaration": "live2dcubismcore.d.ts",
+    "redistributableList": "RedistributableFiles.txt"
+  },
+  "runtimeResources": "None. The official minified Core JavaScript embeds its Emscripten payload and does not load a separate WASM or data file.",
+  "sourceMap": "Not redistributed: RedistributableFiles.txt does not permit the map; the official minified Core has no sourceMappingURL directive."
+}

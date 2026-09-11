@@ -1,0 +1,18 @@
+{
+  "source": "https://github.com/earendil-works/pi",
+  "commit": "e266507b606b9552fa277252644054afd4384b11",
+  "copiedTrackedFiles": 1416,
+  "hydratedModelData": {
+    "path": "packages/ai/src/providers/data",
+    "copiedIgnoredFiles": 40,
+    "manifestSha256": "251525490673f2423008ba0fc08210222335df57cb8356730e8e073846e2b192",
+    "contentsSha256": "7a63aa11e79f721480d238ad71839a2797fc39721ae32e302d23d96a1f7ceb86"
+  },
+  "excluded": [
+    ".git metadata",
+    "node_modules",
+    "dist and other generated build output except the required hydrated model-data snapshot",
+    "environment files and local runtime state"
+  ],
+  "license": "MIT"
+}

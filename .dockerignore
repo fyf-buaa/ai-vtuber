@@ -1,0 +1,33 @@
+# Send only build inputs; local configurations, credentials and media stay outside the context.
+**
+!Dockerfile
+!.dockerignore
+!package.json
+!package-lock.json
+!tsconfig.json
+!tsconfig.build.json
+!LICENSE
+!src/
+!src/**
+!web/
+!web/**
+!Live2D/
+!Live2D/**
+!pi/
+!pi/**
+
+# Do not overlay platform-specific installs or generated build output.
+**/node_modules
+pi/**/dist
+pi/.git
+pi/.artifacts
+web/dist
+Live2D/js/bundle.js
+Live2D/live2d-model/sizuku
+**/.env
+**/.env.*
+**/*credentials*.json
+**/*.pem
+**/*.key
+**/*.p12
+**/*.pfx
